@@ -1,9 +1,7 @@
-'use client'
+"use client";
 
 const LowStockFeature = () => {
-  return (
-    <div>LowStockFeature</div>
-  )
-}
+  return <div>LowStockFeature</div>;
+};
 
-export default LowStockFeature
+export default LowStockFeature;

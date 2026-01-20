@@ -1,6 +1,5 @@
-import ProductFeature from "./feature"
+import { ProductFeature } from "./feature";
 
+const ProductPage = () => <ProductFeature />;
 
-const ProductPage = () => <ProductFeature />
-
-export default ProductPage
+export default ProductPage;
