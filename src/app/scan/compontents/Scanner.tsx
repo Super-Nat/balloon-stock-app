@@ -15,7 +15,7 @@ export function Scanner({ onResult }: Props) {
       { facingMode: "environment" }, // กล้องหลัง
       {
         fps: 10,
-        qrbox: { width: 250, height: 250 },
+        qrbox: { width: 300, height: 300 },
       },
       (decodedText) => {
         onResult(decodedText);
@@ -29,7 +29,5 @@ export function Scanner({ onResult }: Props) {
     };
   }, [onResult]);
 
-  return (
-    <div id="qr-reader" className="w-full h-full rounded-lg overflow-hidden" />
-  );
+  return <div id="qr-reader" className="w-[300px] h-[300px] bg-black" />;
 }
