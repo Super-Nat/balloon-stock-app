@@ -124,3 +124,9 @@
     font-family: var(--font-inter);
   }
 }
+
+#qr-reader video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+}

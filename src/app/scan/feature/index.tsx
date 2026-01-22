@@ -2,40 +2,31 @@
 
 import { Button } from "@/components/ui/button";
 import { LowStockAlert } from "../compontents/LowStockAlert";
-import { Scanner } from "../compontents/Scanner";
+import { QRScanner } from "../compontents/Scanner";
 import { useStockStore } from "@/store/store";
-import { useRouter } from "next/navigation";
+import FinderOverlay from "../compontents/FinderOverlay";
 
 export default function ScanFeature() {
-  const router = useRouter();
   const { setProduct } = useStockStore();
-  const handleScan = (sku: string) => {
-    setProduct({
-      id: sku,
-      sku,
-      qty: 1, // mock (ต่อ backend ทีหลัง)
-    });
 
-    router.push(`/product/${sku}`);
-  };
   return (
-    <div className="flex flex-col flex-1 pb-safe">
+    <div className="relative w-full h-[100dvh] overflow-hidden bg-black">
       <LowStockAlert />
 
       {/* Camera placeholder */}
-      <div className="flex-1 m-2 rounded-lg bg-muted flex items-center justify-center aspect-square">
-        <span className="text-muted-foreground text-sm">
-          <Scanner onResult={handleScan} />
-        </span>
-      </div>
+      <QRScanner />
+      <FinderOverlay />
+      {/* <div className="relative w-full  max-h-[70vh] bg-black">
+        <div className="absolute bottom-4 w-full text-center text-white text-sm">
+          Align QR inside frame
+        </div>
+      </div> */}
 
-      <div className="p-4 space-y-3">
-        <Button className="w-full h-12 text-lg">Scan QR Code</Button>
-
+      {/* <div className="p-4 space-y-3">
         <Button variant="outline" className="w-full h-12 text-lg">
           Search SKU
         </Button>
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -1,33 +1,63 @@
 "use client";
 
-import { useEffect } from "react";
-import { Html5Qrcode } from "html5-qrcode";
+import { Scanner } from "@yudiel/react-qr-scanner";
+import { useRouter } from "next/navigation";
+import { useRef, useState } from "react";
+import FinderOverlay from "./FinderOverlay";
 
-type Props = {
-  onResult: (value: string) => void;
+type QRScannerProps = {
+  onResult?: (value: string) => void;
 };
 
-export function Scanner({ onResult }: Props) {
-  useEffect(() => {
-    const qr = new Html5Qrcode("qr-reader");
+export function QRScanner({ onResult }: QRScannerProps) {
+  const router = useRouter();
+  const scannedRef = useRef(false);
+  const [detected, setDetected] = useState(false);
 
-    qr.start(
-      { facingMode: "environment" }, // กล้องหลัง
-      {
-        fps: 10,
-        qrbox: { width: 300, height: 300 },
-      },
-      (decodedText) => {
-        onResult(decodedText);
-        qr.stop().catch(() => {});
-      },
-      () => {}
-    );
+  return (
+    <div className="absolute inset-0 w-full h-full object-cover">
+      <Scanner
+        constraints={{
+          facingMode: "environment",
+        }}
+        onScan={(result) => {
+          if (!result || scannedRef.current) return;
 
-    return () => {
-      qr.stop().catch(() => {});
-    };
-  }, [onResult]);
+          scannedRef.current = true;
+          navigator.vibrate?.(50);
 
-  return <div id="qr-reader" className="w-[300px] h-[300px] bg-black" />;
+          const text =
+            typeof result === "string" ? result : result[0]?.rawValue;
+
+          if (!text) return;
+
+          if (onResult) {
+            onResult(text);
+          } else {
+            if (!detected) {
+              setDetected(true);
+
+              setTimeout(() => {
+                router.push(`/product/${text}`);
+              }, 600);
+            }
+          }
+        }}
+        onError={() => {}}
+        styles={{
+          container: {
+            position: "absolute",
+            inset: "0",
+            zIndex: 0,
+          },
+          video: {
+            objectFit: "cover",
+          },
+        }}
+        components={{
+          finder: false,
+        }}
+      />
+    </div>
+  );
 }
