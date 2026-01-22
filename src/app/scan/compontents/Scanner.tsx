@@ -46,6 +46,7 @@ export function QRScanner({ onResult }: QRScannerProps) {
         onError={() => {}}
         components={{
           finder: false,
+          zoom: true,
         }}
       />
     </div>
