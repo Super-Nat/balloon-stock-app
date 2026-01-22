@@ -49,16 +49,6 @@ export function QRScanner({ onResult }: QRScannerProps) {
           }
         }}
         onError={() => {}}
-        styles={{
-          container: {
-            position: "absolute",
-            inset: "0",
-            zIndex: 0,
-          },
-          video: {
-            objectFit: "cover",
-          },
-        }}
         components={{
           finder: false,
         }}
