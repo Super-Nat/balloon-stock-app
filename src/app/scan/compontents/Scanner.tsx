@@ -19,8 +19,10 @@ export function QRScanner({ onResult }: QRScannerProps) {
       <Scanner
         constraints={{
           facingMode: "environment",
-          width: { ideal: 1280 },
-          height: { ideal: 720 },
+          width: { ideal: 180 },
+          height: { ideal: 180 },
+          //@ts-expect-error
+          advanced: [{ focusMode: "continuous" }],
         }}
         onScan={(result) => {
           if (!result || scannedRef.current) return;
