@@ -15,7 +15,7 @@ export default function ScanFeature() {
 
       {/* Camera placeholder */}
       <QRScanner />
-      <FinderOverlay />
+      {/* <FinderOverlay /> */}
       {/* <div className="relative w-full  max-h-[70vh] bg-black">
         <div className="absolute bottom-4 w-full text-center text-white text-sm">
           Align QR inside frame
