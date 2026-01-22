@@ -18,7 +18,7 @@ export function QRScanner({ onResult }: QRScannerProps) {
     <div className="absolute inset-0 w-full h-full object-cover">
       <Scanner
         constraints={{
-          facingMode: "user",
+          facingMode: "environment",
         }}
         onScan={(result) => {
           if (!result || scannedRef.current) return;
