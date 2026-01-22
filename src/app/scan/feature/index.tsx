@@ -1,10 +1,10 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { LowStockAlert } from "../compontents/LowStockAlert";
-import { QRScanner } from "../compontents/Scanner";
+import { LowStockAlert } from "../components/LowStockAlert";
+import QRScanner from "../components/Scanner";
 import { useStockStore } from "@/store/store";
-import FinderOverlay from "../compontents/FinderOverlay";
+import FinderOverlay from "../components/FinderOverlay";
 
 export default function ScanFeature() {
   const { setProduct } = useStockStore();
