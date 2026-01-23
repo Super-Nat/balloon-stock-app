@@ -1,15 +1,18 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Html5Qrcode } from "html5-qrcode";
 import { useRouter } from "next/navigation";
 import ScannerOverlay from "./ScannerOverlay";
+import ScannerTabs from "./ScannerTabs";
+import EnterCode from "./EnterCode";
 
 export default function QRScanner() {
   const router = useRouter();
   const startedRef = useRef(false);
   const handledRef = useRef(false);
   const scannerRef = useRef<Html5Qrcode | null>(null);
+  const [tabState, setTabState] = useState<"scan" | "enter">("scan");
 
   useEffect(() => {
     if (startedRef.current) return;
@@ -47,7 +50,9 @@ export default function QRScanner() {
   return (
     <div className="fixed inset-0 bg-white">
       <div id="qr-reader" className="absolute inset-0" />
-      <ScannerOverlay />
+      {tabState === "scan" && <ScannerOverlay />}
+      {tabState === "enter" && <EnterCode />}
+      <ScannerTabs onTabChange={setTabState} />
     </div>
   );
 }
