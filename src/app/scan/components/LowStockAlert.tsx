@@ -9,8 +9,8 @@ export function LowStockAlert() {
   if (!product || product.qty !== 1) return null;
 
   return (
-    <div className="p-2">
-      <Alert>
+    <div className="absolute top-4 w-full p-2 z-10">
+      <Alert className=" border-0">
         <AlertTitle>⚠️ Low stock</AlertTitle>
         <AlertDescription className="flex justify-between items-center">
           products have quantity = 1

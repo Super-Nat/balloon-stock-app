@@ -12,7 +12,7 @@ export const useStockStore = create<StockState>((set) => ({
   product: {
     id: "1",
     sku: "B-1001",
-    qty: 2,
+    qty: 1,
   },
 
   setProduct: (product) => set({ product }),

@@ -3,9 +3,10 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useStockStore } from "@/store/store";
+import { useRouter } from "next/navigation";
 export function ProductFeature() {
   const { product, increase, decrease } = useStockStore();
-
+  const router = useRouter();
   return (
     <Card className="m-4">
       <CardContent className="p-6 space-y-6 text-center">
@@ -34,6 +35,12 @@ export function ProductFeature() {
         </div>
 
         <Button className="w-full h-12 text-lg">Save</Button>
+        <Button
+          className="w-full h-12 text-lg"
+          onClick={() => router.push("/scan")}
+        >
+          Back to Scan
+        </Button>
       </CardContent>
     </Card>
   );

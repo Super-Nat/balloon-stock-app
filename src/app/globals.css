@@ -134,3 +134,10 @@
 #qr-reader {
   position: absolute !important;
 }
+
+#qr-shaded-region div {
+  display: none !important;
+}
+#qr-shaded-region {
+  opacity: 0 !important;
+}

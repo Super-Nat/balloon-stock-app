@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { Html5Qrcode } from "html5-qrcode";
 import { useRouter } from "next/navigation";
+import ScannerOverlay from "./ScannerOverlay";
 
 export default function QRScanner() {
   const router = useRouter();
@@ -20,7 +21,7 @@ export default function QRScanner() {
     scanner
       .start(
         { facingMode: "environment" },
-        { fps: 10, qrbox: 260 },
+        { fps: 10, qrbox: 300 },
         async (text) => {
           if (handledRef.current) return;
           handledRef.current = true;
@@ -45,8 +46,8 @@ export default function QRScanner() {
 
   return (
     <div className="fixed inset-0 bg-white">
-      {/* CAMERA (ต้องเต็มจอ) */}
       <div id="qr-reader" className="absolute inset-0" />
+      <ScannerOverlay />
     </div>
   );
 }
