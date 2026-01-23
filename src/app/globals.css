@@ -130,3 +130,7 @@
   height: 100% !important;
   object-fit: cover;
 }
+
+#qr-reader {
+  position: absolute !important;
+}
