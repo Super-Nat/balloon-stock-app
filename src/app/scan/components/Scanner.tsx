@@ -15,7 +15,7 @@ export default function QRScanner() {
   const [tabState, setTabState] = useState<"scan" | "enter">("scan");
 
   useEffect(() => {
-    if (startedRef.current) return;
+    if (startedRef.current || tabState === "enter") return;
     startedRef.current = true;
 
     const scanner = new Html5Qrcode("qr-reader");

@@ -43,6 +43,7 @@ const ScannerOverlay = () => {
           aria-label="Submit"
           className="h-12 w-12 ml-[-60px]"
           onClick={handleSearch}
+          disabled={!code}
         >
           <SearchIcon />
         </Button>
